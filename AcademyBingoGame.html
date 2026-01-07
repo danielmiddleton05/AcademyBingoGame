@@ -5,23 +5,15 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Academy Office Lingo Bingo</title>
 		<style>
-			/* --- CSS STYLES --- */
-
-			/* Variables based on your color palette */
 			:root {
-				/* Primary */
 				--p-darkest: #0e1934;
 				--p-dark: #163f6c;
 				--p-med: #6699cf;
 				--p-light: #d6e8f2;
-
-				/* Secondary */
 				--s-dark: #42757c;
 				--s-med: #5d9d93;
 				--s-light: #78c4ab;
 				--s-palest: #e1f4ed;
-
-				/* Neutrals */
 				--n-dark: #737783;
 				--n-med: #b8b8bb;
 				--n-light: #efefef;
@@ -36,16 +28,14 @@
 				padding: 40px;
 			}
 
-			/* Header Layout */
 			header {
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				margin-bottom: 20px;
-				gap: 15px; /* Space between logo and text */
+				gap: 15px;
 			}
 
-			/* Logo Styling */
 			.logo {
 				height: 50px;
 				width: auto;
@@ -60,7 +50,6 @@
 				letter-spacing: 1px;
 			}
 
-			/* Instructions */
 			.instructions {
 				font-size: 1.1rem;
 				color: var(--n-dark);
@@ -71,7 +60,6 @@
 				line-height: 1.5;
 			}
 
-			/* The Bingo Grid Container */
 			#bingo-board {
 				display: grid;
 				grid-template-columns: repeat(5, 1fr); /* 5 Columns */
@@ -84,11 +72,10 @@
 				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 			}
 
-			/* Individual Square Styling */
 			.square {
 				background-color: white;
 				padding: 15px;
-				height: 100px; /* Fixed height for consistency */
+				height: 100px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -98,24 +85,21 @@
 				color: var(--p-darkest);
 				cursor: pointer;
 				transition: all 0.2s ease;
-				user-select: none; /* Prevents text highlighting on click */
+				user-select: none;
 				border-radius: 4px;
 			}
 
-			/* Hover Effect */
 			.square:hover {
 				background-color: var(--p-light);
 				transform: translateY(-2px);
 			}
 
-			/* Selected State (Marked) */
 			.square.selected {
-				background-color: var(--s-med); /* Teal selection color */
+				background-color: var(--s-med);
 				color: white;
 				box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 			}
 
-			/* Free Space Styling */
 			.square.free-space {
 				background-color: var(--p-darkest);
 				color: var(--s-light);
@@ -126,10 +110,9 @@
 			}
 
 			.square.free-space:hover {
-				transform: none; /* No movement on free space */
+				transform: none;
 			}
 
-			/* Footer */
 			footer {
 				margin-top: 50px;
 				color: var(--n-med);
@@ -160,60 +143,40 @@
 		<footer><a href="mailto:daniel.middleton05@gmail.com.com">&#169;: Daniel M</a></footer>
 
 		<script>
-			/* --- JAVASCRIPT LOGIC --- */
-
-			// 1. The Pool of Terms (35 Total)
 			const bingoTerms = ["Circle back", "Touch base", "Synergy", "Low-hanging fruit", "Think outside the box", "Take it offline", "Win-win", "Paradigm shift", "Best practice", "At the end of the day", "Ping me", "Deep dive", "Drill down", "Hard stop", "Action item", "Loop me in", "Pivot", "Unpack", "Bandwidth", "Table it", "Move the needle", "Birds eye view", "Core competency", "Scalable", "Ecosystem", "Blue sky thinking", "Value-add", "Holistic approach", "Align / Alignment", "Silos", "On my radar", "Run it up the flagpole", "Deliverables", "The Deck"];
 
-			// 2. Function to shuffle array (Fisher-Yates Shuffle)
-			// This ensures randomness without duplicates
 			function shuffle(array) {
 				let currentIndex = array.length,
 					randomIndex;
 
-				// While there remain elements to shuffle.
 				while (currentIndex != 0) {
-					// Pick a remaining element.
 					randomIndex = Math.floor(Math.random() * currentIndex);
 					currentIndex--;
 
-					// And swap it with the current element.
 					[array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
 				}
 
 				return array;
 			}
 
-			// 3. Initialize Game Board
 			function initGame() {
 				const board = document.getElementById("bingo-board");
-
-				// Create a copy of the terms and shuffle them
 				const shuffledTerms = shuffle([...bingoTerms]);
-
-				// We need 24 terms (25 spaces minus 1 free space)
 				const selectedTerms = shuffledTerms.slice(0, 24);
 
-				// Loop 25 times to create the 5x5 grid
-				// 'i' represents the grid index from 0 to 24
 				let termIndex = 0;
 
 				for (let i = 0; i < 25; i++) {
 					const square = document.createElement("div");
 					square.classList.add("square");
 
-					// Check if this is the center square (Index 12)
 					if (i === 12) {
 						square.textContent = "FREE SPACE";
 						square.classList.add("free-space");
-						// Free space is effectively "selected" by default logic,
-						// but we style it separately. No click event needed.
 					} else {
-						// Assign the term
 						square.textContent = selectedTerms[termIndex];
 						termIndex++;
 
-						// Add Click Event to Toggle Selection
 						square.addEventListener("click", function () {
 							this.classList.toggle("selected");
 						});
@@ -223,7 +186,6 @@
 				}
 			}
 
-			// Run the initialization when page loads
 			window.onload = initGame;
 		</script>
 	</body>
