@@ -113,6 +113,31 @@
 				transform: none;
 			}
 
+			.refresh-btn {
+				background-color: var(--s-med);
+				color: white;
+				border: none;
+				padding: 12px 30px;
+				font-size: 1rem;
+				font-weight: 600;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				margin-bottom: 30px;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+
+			.refresh-btn:hover {
+				background-color: var(--s-dark);
+				transform: translateY(-2px);
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+			}
+
+			.refresh-btn:active {
+				transform: translateY(0);
+			}
+
 			footer {
 				margin-top: 50px;
 				color: var(--n-med);
@@ -140,10 +165,12 @@
 
 		<div id="bingo-board"></div>
 
+		<button class="refresh-btn" onclick="location.reload()">Refresh Board</button>
+
 		<footer><a href="mailto:daniel.middleton05@gmail.com.com">&#169;: Daniel M</a></footer>
 
 		<script>
-			const bingoTerms = ["Circle back", "Touch base", "Synergy", "Low-hanging fruit", "Think outside the box", "Take it offline", "Win-win", "Paradigm shift", "Best practice", "At the end of the day", "Ping me", "Deep dive", "Drill down", "Hard stop", "Action item", "Loop me in", "Pivot", "Unpack", "Bandwidth", "Table it", "Move the needle", "Birds eye view", "Core competency", "Scalable", "Ecosystem", "Blue sky thinking", "Value-add", "Holistic approach", "Align / Alignment", "Silos", "On my radar", "Run it up the flagpole", "Deliverables", "The Deck"];
+			const bingoTerms = ["Circle back", "Touch base", "Synergy", "Low-hanging fruit", "Think outside the box", "Take it offline", "Win-win", "Paradigm shift", "Best practice", "Ping me", "Deep dive", "Drill down", "Hard stop", "Action item", "Loop me in", "Pivot", "Unpack", "Bandwidth", "Table it", "Move the needle", "Birds eye view", "Core competency", "Scalable", "Ecosystem", "Blue sky thinking", "Value-add", "Holistic approach", "Align / Alignment", "Silos", "On my radar", "Run it up the flagpole", "Deliverables", "The Deck"];
 
 			function shuffle(array) {
 				let currentIndex = array.length,
